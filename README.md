@@ -1,1 +1,3 @@
 # NVPilot
+
+NVPilot is like personalized medicine for your PC. Just like a doctor doesn't prescribe the same treatment to every patient, NVPilot doesn't apply the same settings to every machine — it reads your specific hardware, figures out what's actually holding your system back, and prescribes the exact optimizations your machine needs for whatever you're running. Instead of nerfing your graphics like a one-size-fits-all preset, it identifies which settings are genuinely costing you performance on your GPU specifically, changes only those, and preserves everything else at full quality. It handles the full system: background apps eating your RAM, process priority, power plans, and game configs — all reasoned about together, not in isolation.
