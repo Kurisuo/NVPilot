@@ -90,4 +90,4 @@ npx ts-node src/demo.ts --restore
 
 ---
 
-*Built at the NemoClaw NVIDIA x ASUS Hackathon — UC Santa Cruz, May 2026*
+*Built as prep for the NemoClaw NVIDIA x ASUS Hackathon — UC Santa Cruz, May 2026*
