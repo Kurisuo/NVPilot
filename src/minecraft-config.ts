@@ -1,10 +1,8 @@
-// minecraft-config.ts — Tool #2: Read and modify Minecraft settings
-//
 // This file does three things:
 //   1. Reads Minecraft's options.txt into a structured object
 //   2. Lets the agent modify specific settings
 //   3. Writes the changes back to the file
-//
+
 // WHY: This is how the agent "tunes" the game. No hardware hacking,
 // no driver manipulation — just editing the game's own config file.
 // Safe, reversible, and effective.
@@ -15,16 +13,18 @@
 // writeFileSync = write a string to a file
 // copyFileSync  = copy a file (we use this for backups)
 // existsSync    = check if a file exists
+
 import { readFileSync, writeFileSync, copyFileSync, existsSync } from "fs";
 import { join } from "path";
+
 // "path" module helps build file paths that work on any OS.
 // join("folder", "file.txt") = "folder/file.txt" on Mac, "folder\file.txt" on Windows
 
 // ---- TYPES ----
 
 // The settings the agent cares about for performance tuning.
-// We don't need ALL of Minecraft's settings — just the ones
-// that meaningfully affect FPS.
+// We don't need ALL of Minecraft's settings — just the ones that meaningfully affect FPS.
+
 export interface MinecraftPerformanceSettings {
   renderDistance: number;        // 2-32, biggest FPS impact
   simulationDistance: number;    // 5-32, affects entity processing
@@ -49,6 +49,7 @@ export interface MinecraftPerformanceSettings {
 // Build the path to Minecraft's options.txt
 // On Windows: C:\Users\<you>\AppData\Roaming\.minecraft\options.txt
 // process.env.APPDATA gives us the AppData\Roaming folder
+
 const MINECRAFT_DIR = join(process.env.APPDATA || "", ".minecraft");
 const OPTIONS_PATH = join(MINECRAFT_DIR, "options.txt");
 const BACKUP_PATH = join(MINECRAFT_DIR, "options.txt.backup");
@@ -58,9 +59,6 @@ const BACKUP_PATH = join(MINECRAFT_DIR, "options.txt.backup");
 // readAllSettings():
 // Reads the ENTIRE options.txt file and returns it as a
 // key-value map (like a dictionary in Python, or std::map in C++).
-//
-// Map<string, string> means: keys are strings, values are strings.
-// We'll convert to numbers/booleans when needed.
 
 function readAllSettings(): Map<string, string> {
   const content = readFileSync(OPTIONS_PATH, "utf-8");
@@ -75,8 +73,8 @@ function readAllSettings(): Map<string, string> {
     if (!line.trim()) continue;
 
     // Split on the FIRST colon only.
-    // "renderDistance:29" → key="renderDistance", value="29"
     // We use indexOf instead of split because some values contain colons
+  
     const colonIndex = line.indexOf(":");
     if (colonIndex === -1) continue; // no colon = skip
 
@@ -89,16 +87,14 @@ function readAllSettings(): Map<string, string> {
 }
 
 // getPerformanceSettings():
-// Reads the full file, then extracts ONLY the settings
-// that matter for performance tuning.
+// Reads the full file, then extracts ONLY the settings that matter for performance tuning.
 // Returns a clean typed object the agent can reason about.
 
 export function getPerformanceSettings(): MinecraftPerformanceSettings {
   const all = readAllSettings();
 
   // Helper: get a value or use a default if missing
-  // The "!" after .get() tells TypeScript "I know this won't be undefined"
-  // but we provide fallbacks with || just in case
+  // The "!" after .get() tells TypeScript "I know this won't be undefined but we provide fallbacks with || just in case
   return {
     renderDistance: parseInt(all.get("renderDistance") || "12"),
     simulationDistance: parseInt(all.get("simulationDistance") || "12"),
@@ -150,8 +146,6 @@ export function restoreConfig(): string {
 // SOME of the fields from MinecraftPerformanceSettings.
 // The agent might only want to change renderDistance and ao,
 // leaving everything else untouched.
-//
-// This is the agent's primary action tool.
 
 export function modifySettings(changes: Partial<MinecraftPerformanceSettings>): string {
   if (!existsSync(OPTIONS_PATH)) {
