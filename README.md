@@ -52,7 +52,7 @@ npx ts-node src/demo.ts --restore
 
 ### With NemoClaw + Ollama (full agent mode)
 
-> Requires Docker and a NemoClaw-compatible environment (DGX Spark or local Docker setup).
+> Requires Docker and a NemoClaw-compatible environment (DGX Spark or locally on brev.Nvidia.com).
 > Setup instructions coming soon.
 
 ---
