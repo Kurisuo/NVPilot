@@ -1,10 +1,14 @@
 {
-  "name": "nvidia-hackathon",
+  "name": "nvpilot",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Autonomous GPU/system performance agent: perceives hardware state, plans surgical optimizations (LLM or rules), applies them reversibly in real time.",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "analyze": "ts-node src/index.ts --analyze",
+    "apply": "ts-node src/index.ts --apply",
+    "restore": "ts-node src/index.ts --restore",
+    "watch": "ts-node src/index.ts --watch",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
