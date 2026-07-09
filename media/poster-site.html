@@ -1,0 +1,118 @@
+<!doctype html>
+<!--
+  Source for docs/assets/nvpilot-site.png (2880x1620). Embeds docs/index.html in an iframe
+  via an absolute file:// path — update the iframe src if the repo moves. Re-render with:
+  msedge --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2
+         --window-size=1440,810 --allow-file-access-from-files --force-prefers-reduced-motion
+         --virtual-time-budget=6000 --screenshot=nvpilot-site.png media/poster-site.html
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NVPilot site poster</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1440px; height: 810px; overflow: hidden; }
+  body { background: #050705; position: relative; font-family: "Segoe UI", system-ui, sans-serif; }
+
+  .glow { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+  .glow.a { width: 640px; height: 640px; left: -260px; bottom: -320px; background: rgba(118, 185, 0, 0.30); }
+  .glow.b { width: 560px; height: 560px; right: -200px; top: -260px; background: rgba(60, 110, 20, 0.20); }
+  .glow.c { width: 500px; height: 400px; right: 80px; bottom: -260px; background: rgba(118, 185, 0, 0.14); }
+
+  .stars {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 10% 20%, rgba(232,239,230,0.45) 50%, transparent 51%),
+      radial-gradient(1px 1px at 20% 70%, rgba(232,239,230,0.3) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 33% 40%, rgba(232,239,230,0.25) 50%, transparent 51%),
+      radial-gradient(1px 1px at 47% 86%, rgba(232,239,230,0.35) 50%, transparent 51%),
+      radial-gradient(1px 1px at 55% 12%, rgba(232,239,230,0.3) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 68% 64%, rgba(232,239,230,0.25) 50%, transparent 51%),
+      radial-gradient(1px 1px at 82% 28%, rgba(232,239,230,0.35) 50%, transparent 51%),
+      radial-gradient(1px 1px at 92% 52%, rgba(232,239,230,0.3) 50%, transparent 51%);
+  }
+
+  .frame-wrap {
+    position: absolute;
+    left: 430px; top: 40px;
+    transform: perspective(2400px) rotateX(26deg) rotateY(-16deg) rotateZ(8deg);
+    transform-origin: 20% 40%;
+    border-radius: 12px;
+    border: 1px solid rgba(118,185,0,0.22);
+    box-shadow: 0 60px 140px rgba(0,0,0,0.75), 0 0 90px rgba(118,185,0,0.10);
+    overflow: hidden;
+    width: 902px; height: 1092px;
+    background: #0a0e0a;
+  }
+  .frame-bar {
+    display: flex; align-items: center; gap: 8px;
+    height: 42px; padding: 0 16px;
+    background: #101510;
+    border-bottom: 1px solid #1f2a1f;
+  }
+  .wd { width: 10px; height: 10px; border-radius: 50%; background: #253225; }
+  .wd.g { background: #76b900; opacity: 0.75; }
+  .urlbar {
+    margin-left: 10px;
+    font-family: Consolas, monospace; font-size: 12px;
+    color: #93a093;
+    background: #0a0e0a;
+    border: 1px solid #1f2a1f;
+    border-radius: 999px;
+    padding: 5px 16px;
+  }
+  .frame-wrap iframe {
+    border: 0;
+    width: 1290px; height: 1500px;
+    transform: scale(0.699);
+    transform-origin: 0 0;
+  }
+
+  .copy { position: absolute; left: 72px; top: 250px; width: 400px; color: #e8efe6; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: Consolas, monospace; font-size: 13px;
+    color: #93a093;
+    border: 1px solid rgba(232,239,230,0.18);
+    border-radius: 999px;
+    padding: 7px 16px 7px 12px;
+    background: rgba(232,239,230,0.04);
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #76b900; box-shadow: 0 0 10px #76b900; }
+  h1 { margin-top: 24px; font-size: 52px; line-height: 1.08; font-weight: 700; letter-spacing: -0.02em; }
+  h1 em { font-style: normal; color: #76b900; }
+  .sub { margin-top: 20px; font-size: 19px; line-height: 1.5; color: #93a093; font-weight: 350; }
+  .meta { margin-top: 28px; font-family: Consolas, monospace; font-size: 12.5px; color: #5f6b5f; letter-spacing: 0.05em; }
+
+  .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(115% 90% at 45% 45%, transparent 52%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="glow a"></div>
+  <div class="glow b"></div>
+  <div class="glow c"></div>
+
+  <div class="frame-wrap">
+    <div class="frame-bar">
+      <span class="wd g"></span><span class="wd"></span><span class="wd"></span>
+      <span class="urlbar">kurisuo.github.io/NVPilot</span>
+    </div>
+    <iframe src="file:///C:/Users/chris/NVPilot/docs/index.html" scrolling="no"></iframe>
+  </div>
+
+  <div class="copy">
+    <span class="pill"><span class="dot"></span>nvpilot · adaptive performance agent</span>
+    <h1>Not a preset. <em>A prescription.</em></h1>
+    <p class="sub">Perceive → plan → act → reflect, in real time, for the app you're actually using — and revert everything on exit.</p>
+    <p class="meta">WINDOWS + LINUX · OPEN SOURCE · ALWAYS REVERSIBLE</p>
+  </div>
+
+  <div class="vignette"></div>
+</body>
+</html>

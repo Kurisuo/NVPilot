@@ -1,0 +1,248 @@
+<!doctype html>
+<!--
+  Source for docs/assets/nvpilot-hero.png (2880x1620). Re-render with:
+  msedge --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=2
+         --window-size=1440,810 --screenshot=nvpilot-hero.png media/poster-hero.html
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NVPilot hero poster</title>
+<style>
+  :root {
+    --ink: #e8efe6;
+    --muted: #93a093;
+    --faint: #5f6b5f;
+    --green: #76b900;
+    --amber: #d9a03c;
+    --line: #1f2a1f;
+    --mono: "Cascadia Code", Consolas, ui-monospace, monospace;
+    --sans: "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1440px; height: 810px; overflow: hidden; }
+  body {
+    background: #050705;
+    font-family: var(--sans);
+    color: var(--ink);
+    position: relative;
+  }
+
+  /* atmosphere */
+  .glow { position: absolute; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+  .glow.a { width: 620px; height: 620px; left: -240px; bottom: -300px; background: rgba(118, 185, 0, 0.32); }
+  .glow.b { width: 520px; height: 520px; right: -160px; bottom: -280px; background: rgba(118, 185, 0, 0.18); }
+  .glow.c { width: 700px; height: 400px; right: 60px; top: -260px; background: rgba(60, 110, 20, 0.16); }
+  .stars {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 8% 22%, rgba(232,239,230,0.5) 50%, transparent 51%),
+      radial-gradient(1px 1px at 16% 68%, rgba(232,239,230,0.35) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 27% 38%, rgba(232,239,230,0.28) 50%, transparent 51%),
+      radial-gradient(1px 1px at 36% 84%, rgba(232,239,230,0.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 44% 14%, rgba(232,239,230,0.3) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 58% 76%, rgba(232,239,230,0.3) 50%, transparent 51%),
+      radial-gradient(1px 1px at 66% 30%, rgba(232,239,230,0.35) 50%, transparent 51%),
+      radial-gradient(1px 1px at 78% 60%, rgba(232,239,230,0.3) 50%, transparent 51%),
+      radial-gradient(1.5px 1.5px at 88% 18%, rgba(232,239,230,0.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 94% 46%, rgba(232,239,230,0.3) 50%, transparent 51%);
+  }
+  .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,0.55) 100%);
+  }
+
+  /* tilted scene, like a plane receding to the upper right */
+  .scene {
+    position: absolute;
+    left: 40px; top: 130px;
+    width: 1560px;
+    transform: perspective(2200px) rotateX(24deg) rotateY(-14deg) rotateZ(7deg);
+    transform-origin: 30% 50%;
+    display: flex;
+    align-items: center;
+    gap: 70px;
+  }
+
+  /* left copy */
+  .copy { width: 480px; flex-shrink: 0; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 13px;
+    color: var(--muted);
+    border: 1px solid rgba(232,239,230,0.18);
+    border-radius: 999px;
+    padding: 7px 16px 7px 12px;
+    background: rgba(232,239,230,0.04);
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px var(--green); }
+  h1 {
+    margin-top: 26px;
+    font-size: 58px;
+    line-height: 1.06;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+  }
+  h1 em { font-style: normal; color: var(--green); }
+  .sub {
+    margin-top: 22px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--muted);
+    font-weight: 350;
+  }
+  .row { display: flex; align-items: center; gap: 16px; margin-top: 34px; }
+  .cmd {
+    font-family: var(--mono); font-size: 15px;
+    color: var(--ink);
+    border: 1px solid rgba(232,239,230,0.16);
+    background: rgba(0,0,0,0.45);
+    border-radius: 999px;
+    padding: 12px 22px;
+  }
+  .cmd .p { color: var(--faint); }
+  .btn {
+    font-size: 15px; font-weight: 600;
+    color: #0a0e0a;
+    background: #eef4ea;
+    border-radius: 999px;
+    padding: 13px 26px;
+    box-shadow: 0 0 34px rgba(118,185,0,0.45);
+  }
+  .meta { margin-top: 30px; font-family: var(--mono); font-size: 12.5px; color: var(--faint); letter-spacing: 0.04em; }
+
+  /* window chrome shared */
+  .win {
+    background: rgba(9, 12, 9, 0.92);
+    border: 1px solid rgba(118,185,0,0.16);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.7), 0 0 60px rgba(118,185,0,0.07);
+  }
+  .win-bar {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 14px;
+    background: rgba(16, 21, 16, 0.95);
+    border-bottom: 1px solid var(--line);
+  }
+  .wd { width: 9px; height: 9px; border-radius: 50%; background: #253225; }
+  .wd.g { background: var(--green); opacity: 0.75; }
+  .win-title { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+  .stage { position: relative; flex: 1; height: 620px; }
+
+  /* terminal window */
+  .term { position: absolute; left: 0; top: 20px; width: 620px; }
+  .term-body {
+    font-family: var(--mono); font-size: 13px; line-height: 1.6;
+    padding: 18px 20px 20px; white-space: pre;
+  }
+  .t-phase { color: var(--green); font-weight: 600; }
+  .t-key { color: var(--muted); }
+  .t-ok { color: var(--green); }
+  .t-dim { color: var(--faint); }
+  .t-amber { color: var(--amber); }
+  .t-prompt { color: var(--faint); }
+  .t-cmd { color: var(--ink); font-weight: 600; }
+
+  /* code window, overlapping */
+  .code { position: absolute; left: 470px; top: 260px; width: 560px; }
+  .code-body {
+    font-family: var(--mono); font-size: 12.5px; line-height: 1.65;
+    padding: 16px 20px 18px; white-space: pre;
+    color: #c9d4c6;
+  }
+  .k { color: #76b900; }
+  .s { color: #d9a03c; }
+  .cm { color: #5f6b5f; font-style: italic; }
+  .fn { color: #a7d34f; }
+
+  /* telemetry chip */
+  .chip {
+    position: absolute; left: 520px; top: -46px;
+    display: flex; gap: 26px;
+    background: rgba(9, 12, 9, 0.92);
+    border: 1px solid rgba(118,185,0,0.2);
+    border-radius: 10px;
+    padding: 16px 24px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    font-family: var(--mono);
+  }
+  .chip .cell .lab { font-size: 10px; letter-spacing: 0.14em; color: var(--faint); text-transform: uppercase; }
+  .chip .cell .val { font-size: 20px; color: var(--ink); margin-top: 4px; font-weight: 600; }
+  .chip .cell .val.g { color: var(--green); }
+</style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="glow a"></div>
+  <div class="glow b"></div>
+  <div class="glow c"></div>
+
+  <div class="scene">
+    <div class="copy">
+      <span class="pill"><span class="dot"></span>Open source · Every change reversible</span>
+      <h1>Reads your hardware. Tunes <em>only what costs you.</em></h1>
+      <p class="sub">An autonomous performance agent that perceives your GPU, plans surgical optimizations, and journals the inverse of every change.</p>
+      <div class="row">
+        <span class="cmd"><span class="p">$</span> npm run analyze</span>
+        <span class="btn">Get NVPilot</span>
+      </div>
+      <p class="meta">TYPESCRIPT · NVIDIA-SMI · LOCAL LLM OPTIONAL</p>
+    </div>
+
+    <div class="stage">
+      <div class="win term">
+        <div class="win-bar"><span class="wd g"></span><span class="wd"></span><span class="wd"></span><span class="win-title">nvpilot — analyze</span></div>
+        <div class="term-body"><span class="t-prompt">$</span> <span class="t-cmd">npm run analyze</span>
+
+<span class="t-phase">&gt;&gt;&gt; PERCEIVE — system state</span>
+
+<span class="t-key">  GPU:      </span>GeForce RTX 3060 Laptop GPU
+<span class="t-key">  VRAM:     </span>2481/6144 MiB (40% used)
+<span class="t-key">  Temp:     </span>67°C   Power: 78W/115W   Load: 91%
+<span class="t-key">  Tier:     </span>MID
+
+<span class="t-phase">&gt;&gt;&gt; PLAN — decided by LLM (nemotron-mini)</span>
+
+  GPU is the bottleneck at 91% load.
+  Reduce render distance and clouds only.
+
+<span class="t-amber">  ┌─ renderDistance: 16 → 10</span>
+<span class="t-dim">  └─ highest per-frame cost on this tier</span>
+<span class="t-amber">  ┌─ clouds: fancy → fast</span>
+<span class="t-dim">  └─ minor visual cost, cheaper to render</span>
+
+  Preserved (kept at current quality):
+<span class="t-ok">  ✓ shadows   ✓ mipmaps   ✓ particles</span></div>
+      </div>
+
+      <div class="chip">
+        <div class="cell"><div class="lab">GPU load</div><div class="val g">91%</div></div>
+        <div class="cell"><div class="lab">VRAM</div><div class="val">40%</div></div>
+        <div class="cell"><div class="lab">Temp</div><div class="val">67°C</div></div>
+        <div class="cell"><div class="lab">Tier</div><div class="val g">MID</div></div>
+      </div>
+
+      <div class="win code">
+        <div class="win-bar"><span class="wd g"></span><span class="wd"></span><span class="wd"></span><span class="win-title">src/tools/dispatch.ts</span></div>
+        <div class="code-body"><span class="cm">// dispatch.ts — single execution entry point for external</span>
+<span class="cm">// agent runtimes (NemoClaw/OpenClaw). Every mutating tool</span>
+<span class="cm">// goes through the same validation and journal as the</span>
+<span class="cm">// built-in planners: as constrained, as reversible.</span>
+
+<span class="k">export async function</span> <span class="fn">dispatchTool</span>(
+  name: <span class="k">string</span>,
+  args: Record&lt;<span class="k">string</span>, <span class="k">unknown</span>&gt;,
+  ctx: DispatchContext
+): Promise&lt;<span class="k">unknown</span>&gt; {
+  <span class="k">switch</span> (name) {
+    <span class="k">case</span> <span class="s">"get_gpu_stats"</span>:
+      <span class="k">return</span> drivers.telemetry.<span class="fn">getGpuStats</span>();</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vignette"></div>
+</body>
+</html>
